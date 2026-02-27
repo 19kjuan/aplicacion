@@ -5,8 +5,12 @@ from flask_migrate import Migrate
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+import pymysql
 
 load_dotenv()
+
+# Install MySQL driver
+pymysql.install_as_MySQLdb()
 
 app = Flask(__name__)
 CORS(app)
@@ -15,7 +19,8 @@ CORS(app)
 if os.getenv('DATABASE_URL'):
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 else:
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///tasks.db'
+    # MySQL configuration
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://aplicacionsena:Juanjesus200619@localhost/task_management'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
