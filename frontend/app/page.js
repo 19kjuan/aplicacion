@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Plus, Search, Filter } from 'lucide-react';
-import TaskForm from '@/components/TaskForm';
-import TaskCard from '@/components/TaskCard';
-import { taskAPI } from '@/lib/api';
+import TaskForm from '../components/TaskForm';
+import TaskCard from '../components/TaskCard';
+import { taskAPI } from '../lib/api';
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
@@ -123,7 +123,7 @@ export default function Home() {
                   placeholder="Search tasks..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900 placeholder-gray-500"
                 />
               </div>
             </div>
@@ -131,7 +131,7 @@ export default function Home() {
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
               >
                 <option value="all">All Status</option>
                 <option value="pending">Pending</option>
@@ -141,7 +141,7 @@ export default function Home() {
               <select
                 value={priorityFilter}
                 onChange={(e) => setPriorityFilter(e.target.value)}
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white text-gray-900"
               >
                 <option value="all">All Priority</option>
                 <option value="high">High</option>
@@ -153,7 +153,7 @@ export default function Home() {
 
           <button
             onClick={handleCreateTask}
-            className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2"
+            className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center justify-center gap-2 transition-colors"
           >
             <Plus size={20} />
             Create New Task
@@ -177,7 +177,7 @@ export default function Home() {
             {tasks.length === 0 && (
               <button
                 onClick={handleCreateTask}
-                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 Create Your First Task
               </button>

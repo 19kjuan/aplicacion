@@ -7,11 +7,11 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'completed':
-        return 'bg-green-100 text-green-800';
+        return 'bg-green-100 text-green-800 border-green-200';
       case 'in-progress':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-blue-100 text-blue-800 border-blue-200';
       default:
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
     }
   };
 
@@ -57,7 +57,7 @@ const TaskCard = ({ task, onEdit, onDelete }) => {
       )}
 
       <div className="flex flex-wrap gap-2 mb-3">
-        <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(task.status)}`}>
+        <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(task.status)}`}>
           {task.status.replace('-', ' ')}
         </span>
         <span className={`flex items-center gap-1 text-xs font-medium ${getPriorityColor(task.priority)}`}>
