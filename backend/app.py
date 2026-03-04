@@ -21,7 +21,12 @@ database_url = os.getenv('DATABASE_URL')
 if not database_url:
     raise ValueError("DATABASE_URL environment variable is not set")
 
+# Fix for psycopg3 - add the engine parameter
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
+app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
+    'pool_pre_ping': True,
+    'pool_recycle': 300,
+}
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 try:
