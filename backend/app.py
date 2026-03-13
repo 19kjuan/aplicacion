@@ -14,7 +14,18 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=['*'], supports_credentials=True)
+
+@app.route('/')
+def home():
+    return jsonify({
+        'message': 'Task Management API',
+        'status': 'running',
+        'endpoints': {
+            'health': '/api/health',
+            'tasks': '/api/tasks'
+        }
+    })
 
 # Database configuration
 database_url = os.getenv('DATABASE_URL')
