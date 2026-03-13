@@ -73,8 +73,12 @@ class Task(db.Model):
 # Routes
 @app.route('/api/tasks', methods=['GET'])
 def get_tasks():
-    tasks = Task.query.all()
-    return jsonify([task.to_dict() for task in tasks])
+    try:
+        tasks = Task.query.all()
+        return jsonify([task.to_dict() for task in tasks])
+    except Exception as e:
+        logger.error(f"Error fetching tasks: {str(e)}")
+        return jsonify({'error': 'Failed to fetch tasks', 'details': str(e)}), 500
 
 @app.route('/api/tasks/<int:task_id>', methods=['GET'])
 def get_task(task_id):
