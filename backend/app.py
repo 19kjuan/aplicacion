@@ -148,6 +148,17 @@ def setup_database():
         logger.error(f"Database setup failed: {e}")
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/setup', methods=['GET'])
+def setup_database_get():
+    try:
+        with app.app_context():
+            db.create_all()
+            logger.info("Database tables created successfully via GET")
+            return jsonify({'message': 'Database setup completed successfully via GET'})
+    except Exception as e:
+        logger.error(f"Database setup failed: {e}")
+        return jsonify({'error': str(e)}), 500
+
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(debug=False, host='0.0.0.0', port=port)
